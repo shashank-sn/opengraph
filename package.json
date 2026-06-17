@@ -1,0 +1,43 @@
+{
+  "name": "@ftod/opengraph",
+  "version": "0.1.0",
+  "description": "Zero-config OG image generator for solo builders",
+  "bin": {
+    "opengraph": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js --format=cjs --banner:js='#!/usr/bin/env node' --external:@resvg/resvg-js",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "opengraph",
+    "og-image",
+    "social-card",
+    "cli",
+    "seo"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  }
+}
