@@ -3,12 +3,12 @@ import { execSync } from "child_process";
 import { mkdirSync, writeFileSync, rmSync, existsSync, readFileSync } from "fs";
 import { join } from "path";
 
-const CLI = `node ${join(import.meta.dirname || __dirname, "../dist/index.js")}`;
+const CLI_PATH = join(import.meta.dirname || __dirname, "../dist/index.js");
 const testDir = join(import.meta.dirname || __dirname, "__cli_fixtures__");
 
 function run(args: string, cwd?: string): { stdout: string; stderr: string; code: number } {
   try {
-    const stdout = execSync(`${CLI} ${args}`, {
+    const stdout = execSync(`node "${CLI_PATH}" ${args}`, {
       cwd: cwd || testDir,
       encoding: "utf-8",
       stdio: ["pipe", "pipe", "pipe"],
@@ -192,7 +192,7 @@ describe("CLI smoke tests", () => {
       join(subDir, "pkg.json"),
       JSON.stringify({ name: "sub-pkg", description: "From sub" })
     );
-    const result = run(`--json --package ${join(subDir, "pkg.json")}`);
+    const result = run(`--json --package "${join(subDir, "pkg.json")}"`);
     expect(result.code).toBe(0);
     const data = JSON.parse(result.stdout);
     expect(data.title).toBe("sub-pkg");
