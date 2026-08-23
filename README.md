@@ -1,5 +1,7 @@
 # opengraph
 
+> **distribution status (2026-08-23):** this package is not published on npm. the install commands below will fail until a release exists.
+
 your project already exists, it just doesn't have a social card yet, and this reads your package.json, grabs the name, description, version, author, stuff you already wrote, and turns it into a clean og image with one command, no figma or template configs needed.
 
 ## install it
